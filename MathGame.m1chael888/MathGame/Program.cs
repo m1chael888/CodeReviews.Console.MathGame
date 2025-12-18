@@ -1,5 +1,4 @@
 ﻿using System.Diagnostics;
-using System.Runtime.InteropServices;
 //m1chael888
 
 namespace mathgame
@@ -69,30 +68,26 @@ namespace mathgame
                         // prompt navigation input
                         Console.WriteLine("\nWhats next? Choose an option by entering its correpsonding number");
                         Console.WriteLine("1 Play again");
-                        Console.WriteLine("2 Return to menu (5 or more points required to save)");
+                        Console.WriteLine("2 End game and return to menu");
                         Console.WriteLine("3 Exit game");
                         string input = Console.ReadLine();
 
                         switch (input)
                         {
                             case "1":
-                                Console.WriteLine("");
                                 done = true;
+                                Console.Clear();
                                 StartGame(score, count);
                                 break;
                             case "2":
                                 stopwatch.Stop();
-                                Console.WriteLine($"Time elapsed in game: {stopwatch.ToString()}s");
-                                if (score >= 5) // game only saved if score is 5 or more
-                                { 
-                                    int gameNumber = matchHistory.Count + 1;
-                                    matchHistory.Add($"Game {gameNumber} Score: {score}/{count}");
-                                    Console.WriteLine("Score is 5 or more. Match history has been updated");
-                                }
-                                else Console.WriteLine("Score is less than 5. Game will not be saved");
+                                int gameNumber = matchHistory.Count + 1;
 
-                                Console.WriteLine("");
+                                Console.WriteLine($"Time elapsed in game: {stopwatch.ToString()}s");
+                                if (count > 0) matchHistory.Add($"Game {gameNumber} Score: {score}/{count}");
+
                                 done = true;
+                                Console.Clear();
                                 Menu();
                                 break;
                             case "3":
@@ -216,6 +211,7 @@ namespace mathgame
                         case "1":
                             Console.WriteLine("");
                             done = true;
+                            Console.Clear();
                             Menu();
                             break;
                         case "2":
